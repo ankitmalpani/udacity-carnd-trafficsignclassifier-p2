@@ -4,7 +4,7 @@ This repository includes code to classify German Traffic signs using Convolution
 
 [//]: # (Image References)
 
-[image1]: ./sample_images/speed_limit_50.jpg "speed_limit_50"
+[image1]: ./sample_images/speed_limit_50.jpeg "speed_limit_50"
 [image2]: ./sample_images/stop_sign.jpg "stop_sign"
 [image3]: ./sample_images/keep_right.jpg "keep_right"
 [image4]: ./sample_images/turn_right.jpg "turn_right"
@@ -54,7 +54,7 @@ Keeping the general approach and intuition in mind
 5. This made me realize that - even after applying the brightness, some images remained dark and still had a mean pixel value lower than `30` - most possibly due to the random factor chosen. Hence I decided to iterate and re-brighten till negligible number (`10`) of images had a mean pixel value below the threshold of `30`. This can be seen in helper method: `brighten_inputs()`. This last step hardly made a difference to my accuracy.
 *Note*: Do read the note in Pre-process step 3 related to brightness as well.
 
-###### Some images after brightness
+###### Sample of images after brightening
 ![alt text][image8]
 ![alt text][image9]
 
@@ -77,7 +77,7 @@ I was earlier of the intuition that colors are important in this task - even aft
 
 *Note:* What you'll also see here is a step that was an after thought after reading some blogs/papers. Especially Vivek Yadav who posted `98%` accuracy mentioned how he actually changed brightness randomly on images so that his network doesn't rely on brightness. It was quite interesting to read this and this was quite different to how I was approaching my problem (how humans would do it). I really thought this could be worth a try and hence added the step of introducing random brightness into about 10000 inputs where mean pixel value was above `100` (seen in method: `apply_random_brightness()`). This made a slight improvement to accuracy but not all that much - hence decided to leave it as is.
 
-##### Some images after pre-processing
+##### Sample of images after pre-processing (random brightness, gray scale and adaptive histograms)
 
 ![alt text][image6]
 ![alt text][image7]
@@ -121,7 +121,8 @@ With all the pre-processing I had done I was just about touching accuracy of `.9
 *Note*: The comments in the python notebook might not be updated on the layers.
 
 ### Testing a Model on New Images
-I downloaded some random images from the internet. Surprisingly not the easiest to find. :) But here they are.
+I downloaded some random images from the internet. Surprisingly not the easiest to find. :)
+They are shown here in their original sizes
 
 ![alt text][image1]
 ![alt text][image2]
