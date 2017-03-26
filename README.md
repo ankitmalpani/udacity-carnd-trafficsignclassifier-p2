@@ -116,7 +116,7 @@ With all the pre-processing I had done I was just about touching accuracy of `.9
 | RELU					| Acitvation											  |
 | Dropout				| Keep Prob: .7											  |
 | Fully connected		| Output layer, Input 84, Output 43      				  |
-| Softmax				| etc.        									          |
+| Softmax				| final output        									          |
 
 *Note*: The comments in the python notebook might not be updated on the layers.
 
