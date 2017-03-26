@@ -146,6 +146,7 @@ Here is the process I followed to test these:
 
 ### Softmax probabilities
 Here I basically used `tf.nn.top_k` function specified in the example to print the top 3 probabilities for my logits as seen in cells `In [91]` and `In [94]`.
+
 *Important Note:* I have submitted top 3 here - I hope thats OK. I later realized that the question asked for top 5 - but I had already terminated my AWS GPU. Hence decided to keep it at 3, which gives the same idea. If top 5 is needed, let me know and I'll re-create an instance and run this exercise.
 
 ### Visualize
