@@ -2,6 +2,19 @@
 Submission of Udacity CarND's 2nd project: Traffic Sign Classifier
 This repository includes code to classify German Traffic signs using Convolutional networks.
 
+[//]: # (Image References)
+
+[image1]: ./sample_images/speed_limit_50.jpg "speed_limit_50"
+[image2]: ./sample_images/stop_sign.jpg "stop_sign"
+[image3]: ./sample_images/keep_right.jpg "keep_right"
+[image4]: ./sample_images/turn_right.jpg "turn_right"
+[image5]: ./sample_images/yield_sign.png "yield_sign"
+[image6]: ./processed_images/70.png "pro_70"
+[image7]: ./processed_images/caution.png "caution"
+[image8]: ./original_images/speed_30.png "speed_limit_30"
+[image9]: ./original_images/no_entry.png "no_entry"
+[image10]: ./original_images/keep_left.png "keep_left"
+
 ### Code structure
 I have basically structured the code a little different than the original template notebook. I did this so that it is really easy to following what a given cell does (and it is not polluted with a lot of helper code & comments around it)
 This will serve as a good index for the reader.
@@ -26,6 +39,7 @@ It was also good to have the data divided into training, validation and test set
 2. Second noticeable was the quality of images - especially how dark some images were. They were dark enough to not be recognizable by a naked eye
 3. The third thing that struck me was from pre-mentioned notes in the assignment instructions: Number of examples per label (some have more than others)
 
+
 ### General approach & intuition
 This is a good place to talk about the general approach I took to solve this problem (given what I knew about the data in hand and a pre-constructed LeNet architecture that works to about 88% accuracy). My general intuition was to think of "what would I (or a human) need to classify these signs more accurately" and If I could get that input to LeNet, how much would it improve on accuracy? That thought is what helped me decide how I wanted to pre-process the data. (This is all before I had gone through any blogs, papers on how to increase accuracy and tune parameters)
 
@@ -40,6 +54,9 @@ Keeping the general approach and intuition in mind
 5. This made me realize that - even after applying the brightness, some images remained dark and still had a mean pixel value lower than `30` - most possibly due to the random factor chosen. Hence I decided to iterate and re-brighten till negligible number (`10`) of images had a mean pixel value below the threshold of `30`. This can be seen in helper method: `brighten_inputs()`. This last step hardly made a difference to my accuracy.
 *Note*: Do read the note in Pre-process step 3 related to brightness as well.
 
+###### Some images after brightness
+![alt text][image8]
+![alt text][image9]
 
 ##### Pre-process step 2: No discrimination
 With limited improvements in accuracy, my next thought was to increase the data I am using in training. There were multiple ways of doing it.
@@ -59,6 +76,11 @@ I was earlier of the intuition that colors are important in this task - even aft
 4. All these steps can be seen in these methods: `normalize()`, `gray_and_hist_equalize()`, `pre_process()`
 
 *Note:* What you'll also see here is a step that was an after thought after reading some blogs/papers. Especially Vivek Yadav who posted `98%` accuracy mentioned how he actually changed brightness randomly on images so that his network doesn't rely on brightness. It was quite interesting to read this and this was quite different to how I was approaching my problem (how humans would do it). I really thought this could be worth a try and hence added the step of introducing random brightness into about 10000 inputs where mean pixel value was above `100` (seen in method: `apply_random_brightness()`). This made a slight improvement to accuracy but not all that much - hence decided to leave it as is.
+
+##### Some images after pre-processing
+
+![alt text][image6]
+![alt text][image7]
 
 ##### Pre-process step 4: Shuffle
 This is a regular shuffle as done in previous labs.
@@ -99,8 +121,15 @@ With all the pre-processing I had done I was just about touching accuracy of `.9
 *Note*: The comments in the python notebook might not be updated on the layers.
 
 ### Testing a Model on New Images
-I downloaded some random images from the internet. Surprisingly not the easiest to find. :)
-Here is the process I followed to test these
+I downloaded some random images from the internet. Surprisingly not the easiest to find. :) But here they are.
+
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
+
+Here is the process I followed to test these:
 
 1. Loaded images using `matplotlib's imread`
 2. Plotted these images using `matplotlib's imshow`
@@ -113,3 +142,19 @@ Here is the process I followed to test these
 9. Ran the network to get predicted logits and labels
 10. Ran the accuracy test with the new test data (similar to how I ran the earlier given test data)
 11. The results were pretty good. I ran about 10 iterations on this data, adding/removing images and changing their order. However, I was seeing consistent accuracies of `.8` adn `1`
+
+### Softmax probabilities
+Here I basically used `tf.nn.top_k` function specified in the example to print the top 3 probabilities for my logits as seen in cells `In [91]` and `In [94]`.
+*Important Note:* I have submitted top 3 here - I hope thats OK. I later realized that the question asked for top 5 - but I had already terminated my AWS GPU. Hence decided to keep it at 3, which gives the same idea. If top 5 is needed, let me know and I'll re-create an instance and run this exercise.
+
+### Visualize
+I have intentionally left this since this wasn't required right now and in the favor of submitting the assignment in time. I intend to play with this after the submission. along with various other options and improvements I need to try.
+
+### Further improvements and trials
+I would like to try out a few new things in the future from what I've read and researched and see if I could hit a `98%` accuracy
+
+1. Optional Visualization step in the assignment
+2. Apply L2 norms to my data - if that would make a difference
+3. Adding an extra conv layer to see how it changes accuracy. Would it make a difference if it was a 1x1 filter
+4. Trying out different acitivations like Leaky RELU
+5. Also, taking inspiration from some papers, introducing randomness instead of cleaning up(brightening) the data.
