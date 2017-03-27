@@ -160,3 +160,16 @@ I would like to try out a few new things in the future from what I've read and r
 3. Adding an extra conv layer to see how it changes accuracy. Would it make a difference if it was a 1x1 filter
 4. Trying out different acitivations like Leaky RELU
 5. Also, taking inspiration from some papers, introducing randomness instead of cleaning up(brightening) the data.
+
+### Additional resources:
+
+1. http://course.fast.ai/
+2. http://yerevann.com/a-guide-to-deep-learning/
+3. http://people.idsia.ch/~juergen/nn2012traffic.pdf
+4. http://people.idsia.ch/~juergen/ijcnn2011.pdf
+5. http://www.irdindia.in/journal_ijraet/pdf/vol1_iss3/27.pdf
+6. http://stats.stackexchange.com/questions/140811/how-large-should-the-batch-size-be-for-stochastic-gradient-descent
+7. http://sebastianruder.com/optimizing-gradient-descent/index.html#adam
+8. https://github.com/tflearn/tflearn/blob/master/examples/images/googlenet.py
+9. http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.144.5021&rep=rep1&type=pdf
+10. https://github.com/vxy10/ImageAugmentation
